@@ -4,6 +4,8 @@ import time
 import json
 import threading
 
+print("hei")
+
 app = Flask(__name__)
 
 API_KEY = "AsRl61pG1VplyZgHfax7h7x7BKmYZjMx1bQBBDP5"
