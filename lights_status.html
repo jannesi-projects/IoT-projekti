@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lights Status</title>
+</head>
+<body>
+    <h1>Lights Status</h1>
+    <div id="lights"></div>
+
+    <script>
+        function fetchLightsStatus() {
+            fetch('/lights_status')
+                .then(response => response.json())
+                .then(data => {
+                    const lightsContainer = document.getElementById('lights');
+                    lightsContainer.innerHTML = ''; // Clear the container
+                    data.forEach(light => {
+                        const p = document.createElement('p');
+                        p.textContent = `${light.name} (ID: ${light.id}) is ${light.state}.`;
+                        lightsContainer.appendChild(p);
+                    });
+                })
+                .catch(console.error);
+        }
+
+        fetchLightsStatus(); // Fetch once on load
+        setInterval(fetchLightsStatus, 5000); // Then every 5 seconds
+    </script>
+</body>
+</html>
